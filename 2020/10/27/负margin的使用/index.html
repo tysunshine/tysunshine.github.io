@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="负margin不占位负margin实现栅格系统前后左右负margin谁显示上边选项卡去边框">
 <meta property="og:type" content="article">
 <meta property="og:title" content="负margin的使用">
 <meta property="og:url" content="http://tysunshine.github.io/2020/10/27/%E8%B4%9Fmargin%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="飞韵的个人博客">
-<meta property="og:description" content="负margin不占位负margin实现栅格系统前后左右负margin谁显示上边选项卡去边框">
 <meta property="og:locale">
+<meta property="og:image" content="http://tysunshine.github.io/images/facade.jpg">
 <meta property="article:published_time" content="2020-10-27T06:12:13.000Z">
-<meta property="article:modified_time" content="2020-10-27T06:27:22.031Z">
+<meta property="article:modified_time" content="2020-10-27T10:18:39.178Z">
 <meta property="article:author" content="飞韵">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tysunshine.github.io/images/facade.jpg">
 
 
 
@@ -193,7 +193,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -365,7 +365,255 @@
       
 
       
-        <h2 id="负margin不占位"><a href="#负margin不占位" class="headerlink" title="负margin不占位"></a>负margin不占位</h2><h2 id="负margin实现栅格系统"><a href="#负margin实现栅格系统" class="headerlink" title="负margin实现栅格系统"></a>负margin实现栅格系统</h2><h2 id="前后左右负margin谁显示上边"><a href="#前后左右负margin谁显示上边" class="headerlink" title="前后左右负margin谁显示上边"></a>前后左右负margin谁显示上边</h2><h2 id="选项卡去边框"><a href="#选项卡去边框" class="headerlink" title="选项卡去边框"></a>选项卡去边框</h2>
+        <p><img src="/images/facade.jpg"> <a id="more"></a></p>
+<h2 id="负margin不占位"><a href="#负margin不占位" class="headerlink" title="负margin不占位"></a>负margin不占位</h2><div class="group group-1">
+    <div class="left">
+        <div class="box">margin-right: -15px;</div>
+    </div>
+    <div class="right"></div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        CSS代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.group-1</span> &#123;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-1</span> <span class="selector-class">.left</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">padding-top</span>: <span class="number">1px</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#f99</span>;</span><br><span class="line">	<span class="attribute">vertical-align</span>: bottom;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-1</span> <span class="selector-class">.left</span> <span class="selector-class">.box</span> &#123;</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">5px</span> -<span class="number">10px</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">25px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#3f3</span>;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-1</span> <span class="selector-class">.right</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">35px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#9ff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+<h2 id="负margin实现栅格系统"><a href="#负margin实现栅格系统" class="headerlink" title="负margin实现栅格系统"></a>负margin实现栅格系统</h2><div class="group group-2">
+    <div>
+        <div class="row">
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        CSS代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.group-2</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> dashed <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.row</span> &#123;</span><br><span class="line">	<span class="attribute">margin-left</span>: -<span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">margin-right</span>: -<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.row</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	<span class="attribute">display</span>: block;</span><br><span class="line">	<span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.col</span> &#123;</span><br><span class="line">	<span class="attribute">float</span>: left;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">25%</span>;</span><br><span class="line">	<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.col</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">36px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#d3dce6</span>;</span><br><span class="line">	<span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+<h2 id="前后左右负margin谁显示上边"><a href="#前后左右负margin谁显示上边" class="headerlink" title="前后左右负margin谁显示上边"></a>前后左右负margin谁显示上边</h2><ol>
+<li>左右 左 margin-right:-15px;<div class="group group-3 t1">
+ <div class="left"></div>
+ <div class="right"></div>
+</div>
+结论：左侧盒子负margin-right后，右侧盒子向左边移动，并覆盖在左侧盒子上。</li>
+<li>左右 右 margin-left:-15px;<div class="group group-3 t2">
+ <div class="left"></div>
+ <div class="right"></div>
+</div>
+结论：右侧盒子负margin-left后，右侧盒子向左边移动，并覆盖在左侧盒子上。</li>
+<li>上下 上 margin-bottom: -15px;<div class="group group-3 t3">
+ <div class="top"></div>
+ <div class="bottom"></div>
+</div>
+结论：上方盒子负margin-bottom后，下方盒子向上移动，并覆盖在上方盒子上。</li>
+<li>上下 下 margin-top: -15px;<div class="group group-3 t4">
+ <div class="top"></div>
+ <div class="bottom"></div>
+</div>
+结论：下方盒子负margin-right后，下方盒子向上移动，并覆盖在上方盒子上。</li>
+<li>左右 右 margin-right: -15px; <div class="group group-3 t5">
+ <div class="left"></div>
+ <div class="right"></div>
+</div>
+看起来没变化，但后面在有盒子的时候就会重叠到右盒子上，上下时同理，负margin的那一部分将不占位</li>
+<li>盒子里面有内容时，下面的盒子覆盖上面的盒子，但是上面盒子的内容会覆盖下面的盒子<div class="group group-3 t6">
+ <div class="top">
+     <span></span>
+ </div>
+ <div class="bottom"></div>
+</div>
+
+</li>
+</ol>
+<h2 id="选项卡去边框"><a href="#选项卡去边框" class="headerlink" title="选项卡去边框"></a>选项卡去边框</h2><div class="group group-4">
+    <div class="g-tabs">
+        <span class="active">新闻</span>
+        <span>财经</span>
+        <span>科技</span>
+    </div>
+    <div class="g-content">随着国内疫情得到有效控制,三季度,全国多地的交通拥堵状况,也开始上升,据高德数据显示,三季度，全国有7.48%的城市,通勤高峰处于拥堵状态,有58.17%的城市</div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        html与css代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;group group-4&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;g-tabs&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span>&gt;</span>财经<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span>&gt;</span>科技<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;g-content&quot;</span>&gt;</span>随着国内疫情得到有效控制,三季度,全国多地的交通拥堵状况,也开始上升,据高德数据显示,三季度，全国有7.48%的城市,通勤高峰处于拥堵状态,有58.17%的城市<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.group-4</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span> &#123;</span><br><span class="line">	<span class="attribute">margin-bottom</span>: -<span class="number">1px</span>;</span><br><span class="line">	<span class="attribute">border-left</span>: <span class="number">1px</span> solid red; <span class="comment">/*关键*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	<span class="attribute">display</span>: block;</span><br><span class="line">	<span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">	<span class="attribute">float</span>: left;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">	<span class="attribute">border-top</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	<span class="attribute">border-right</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">	<span class="attribute">line-height</span>: <span class="number">36px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span> <span class="selector-tag">span</span><span class="selector-class">.active</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-content</span> &#123;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+
+<style>
+.group {
+    position: relative;
+    padding: 10px;
+    width: 500px;
+    max-width: 100%;
+    height: 100px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+/*1*/
+.group-1 {
+    font-size: 0;
+}
+.group-1 .left {
+    display: inline-block;
+    padding-top: 1px;
+    width: 200px;
+    height: 50px;
+    background: #f99;
+    vertical-align: bottom;
+}
+.group-1 .left .box {
+    margin: 5px -10px 0 0;
+    height: 25px;
+    background: #3f3;
+    font-size: 12px;
+}
+.group-1 .right {
+    display: inline-block;
+    width: 100px;
+    height: 35px;
+    background: #9ff;
+}
+
+/*two*/
+.group-2 > div {
+    height: 60px;
+    border: 1px dashed #ccc;
+}
+.group-2 .row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.group-2 .row:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.group-2 .col {
+    float: left;
+    padding: 0 10px;
+    width: 25%;
+    box-sizing: border-box;
+}
+.group-2 .col > div {
+    height: 36px;
+    background: #d3dce6;
+    border-radius: 3px;
+}
+
+/*three*/
+.group-3 {
+    font-size: 0;
+}
+.group-3 .left, .group-3 .right {
+    display: inline-block;
+}
+.group-3 .left {
+    width: 150px;
+    height: 50px;
+    background: #9f9;
+}
+.group-3 .right {
+    width: 150px;
+    height: 60px;
+    background: rgba(100, 100, 255, 0.5);
+}
+.group-3 .top {
+    width: 150px;
+    height: 40px;
+    background: #9f9;
+}
+.group-3 .bottom {
+    width: 200px;
+    height: 40px;
+    background: rgba(100, 100, 255, 0.5);
+}
+.group-3.t1 .left {
+    margin-right: -15px;
+}
+.group-3.t2 .right {
+    margin-left: -15px;
+}
+.group-3.t3 .top {
+    margin-bottom: -15px;
+}
+.group-3.t4 .bottom {
+    margin-top: -15px;
+}
+.group-3.t5 .right {
+    margin-right: -15px;
+}
+.group-3.t6 .top {
+    border: 4px solid #f99;
+    margin-bottom: -15px;
+}
+.group-3.t6 .top span {
+    display: inline-block;
+    width: 50px;
+    height: 100%;
+    background: red;
+}
+.group-3.t6 .bottom {
+    border: 2px solid blue;
+}
+
+/*4*/
+.group-4 {
+    height: 200px;
+}
+.group-4 .g-tabs {
+    margin-bottom: -1px;
+    border-left: 1px solid red;
+}
+.group-4 .g-tabs:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.group-4 .g-tabs span {
+    float: left;
+    width: 80px;
+    border-top: 1px solid red;
+    border-right: 1px solid red;
+    text-align: center;
+    line-height: 36px;
+}
+.group-4 .g-tabs span.active {
+    background: #fff;
+}
+.group-4 .g-content {
+    padding: 10px;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+</style>
+
+
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
       
     </div>
     
@@ -486,7 +734,7 @@
               
                 <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
