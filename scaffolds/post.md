@@ -4,3 +4,4 @@ date: {{ date }}
 tags:
 categories:
 ---
+![](/images/facade.jpg) <!-- more -->
