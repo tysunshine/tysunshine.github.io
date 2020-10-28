@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>【持续更新】hexo next主题优化手册</title>
+    <url>/2018/11/11/hexo-next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<p><img src="https://i.imgur.com/4O4llpT.png"> <a id="more"></a>           </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="开此贴的原因"><a href="#开此贴的原因" class="headerlink" title="开此贴的原因"></a>开此贴的原因</h2><p>前几天博客崩了，重新搭建了这个博客站点。<br>特开此贴记录next主题优化过程中遇到的问题，希望对大家有所帮助。</p>
+<h2 id="一些说明"><a href="#一些说明" class="headerlink" title="一些说明"></a>一些说明</h2><p>前期相关的Hexo安装、本地/远程部署教程可百度在此不再赘述。<br>基于hexo-next v5.1.4,向上兼容,向下兼容性不确定，特此声明。<br>我的博客本地根目录是<code>D:\hexoblog</code><br>站点配置文件全路径是<code>‪D:\hexoblog\_config.yml</code><br>next主题文件全路径是<code>‪D:\hexoblog\themes\next\_config.yml</code>  </p>
+<h2 id="hexo常见操作"><a href="#hexo常见操作" class="headerlink" title="hexo常见操作"></a>hexo常见操作</h2><p><code>hexo new &quot;postName&quot;</code> #新建文章<br><code>hexo new page &quot;pageName&quot;</code> #新建页面<br><code>hexo clean</code> #清除部署緩存<br><code>hexo n == hexo new</code> #新建文章<br><code>hexo g == hexo generate</code> #生成静态页面至public目录<br><code>hexo s == hexo server</code> #开启预览访问端口（默认端口4000，可在浏览器输入<code>localhost:4000</code>预览）<br><code>hexo d == hexo deploy</code> #将.deploy目录部署到GitHub<br><code>hexo g -d</code> #生成加部署<br><code>hexo g -s</code> #生成加预览    </p>
+<hr>
+<h1 id="next主题优化"><a href="#next主题优化" class="headerlink" title="next主题优化"></a>next主题优化</h1><h2 id="next风格选择"><a href="#next风格选择" class="headerlink" title="next风格选择"></a>next风格选择</h2><p>next有四种风格,在站点配置文件搜索字段<code>Scheme Settings</code>可以看到，  </p>
+<pre><code># Scheme Settings
+# ---------------------------------------------------------------
+# Schemes
+#scheme: Muse
+#scheme: Mist
+#scheme: Pisces
+scheme: Gemini</code></pre>
+<p>我这里用的是四种：<code>Gemini</code>     </p>
+<h2 id="next菜单设置"><a href="#next菜单设置" class="headerlink" title="next菜单设置"></a>next菜单设置</h2><p>比如可以看到我的主页有<code>首页</code>、<code>留言</code>、<code>分类</code>、<code>归档</code>、<code>标签</code>等菜单，<br>在站点配置文件下搜索<code>menu:</code>,可以看到   </p>
+<pre><code>menu:
+  home: / || home
+  about: /about/ || user
+  message: /message/ || comment
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  #schedule: /schedule/ || calendar
+  #sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat</code></pre>
+<p><code>home</code>就是<code>首页</code>;<code>message</code>就是<code>留言</code>…一开始只有首页和归档,其余的需要我们手动创建，<br>在站点根目录下打开命令行,输入<code>hexo new page &quot;about&quot; </code><br>并在主题配置文件<code>menu:</code>字段处取消对about的注释<br>重新部署我们就可以看到主页有<code>关于</code>这个菜单了，其他的类似，<br>修改<code>D:\hexoblog\source\about\index.md</code>,就可以修改<code>关于</code>界面了<br><code>about: /about/ || user</code>中的<code>user</code>是指<code>关于</code>菜单附件的图标用的是<a href="https://fontawesome.com/icons?from=io">图标库</a>里面名为<code>user</code>的图标   </p>
+<h2 id="添加萌妹子动图"><a href="#添加萌妹子动图" class="headerlink" title="添加萌妹子动图"></a>添加萌妹子动图</h2><h3 id="在根目录下打开命令行"><a href="#在根目录下打开命令行" class="headerlink" title="在根目录下打开命令行"></a>在根目录下打开命令行</h3><p>输入<code>npm install --save hexo-helper-live2d</code>   </p>
+<h3 id="修改站点配置文件-注意不是主题配置文件"><a href="#修改站点配置文件-注意不是主题配置文件" class="headerlink" title="修改站点配置文件(注意不是主题配置文件)"></a>修改站点配置文件(注意不是主题配置文件)</h3><p>在末尾加入:    </p>
+<pre><code>live2d:
+      enable: true
+      scriptFrom: local
+      model:
+        scale: 1
+        hHeadPos: 0.5
+        vHeadPos: 0.618
+      display:
+        superSample: 2
+        width: 150
+        height: 300
+        position: right
+        hOffset: 0
+        vOffset: -20
+     mobile:
+        show: false
+      react:
+        opacityDefault: 0.5
+        opacityOnHover: 0.</code></pre>
+<h2 id="实现文章首页”分类于”、”阅读次数”等效果"><a href="#实现文章首页”分类于”、”阅读次数”等效果" class="headerlink" title="实现文章首页”分类于”、”阅读次数”等效果"></a>实现文章首页”分类于”、”阅读次数”等效果</h2><p>效果图如下:<br><img src="https://i.imgur.com/sIHtbOe.png">     </p>
+<h3 id="在根目录下打开命令行-1"><a href="#在根目录下打开命令行-1" class="headerlink" title="在根目录下打开命令行"></a>在根目录下打开命令行</h3><p>依次输入以下命令:    </p>
+<pre><code>npm install hexo-wordcount --save
+npm uninstall hexo-generator-index --save
+npm install hexo-generator-index-pin-top --save   </code></pre>
+<h3 id="打开主题配置文件"><a href="#打开主题配置文件" class="headerlink" title="打开主题配置文件"></a>打开主题配置文件</h3><p>打开相关开关:   </p>
+<pre><code>post_wordcount:
+    item_text: true
+    wordcount: true
+    min2read: true
+    totalcount: true</code></pre>
+<h3 id="打开…-themes-next-layout-macro-post-swig文件"><a href="#打开…-themes-next-layout-macro-post-swig文件" class="headerlink" title="打开…/themes/next/layout/_macro/post.swig文件"></a>打开…/themes/next/layout/_macro/post.swig文件</h3><p>把里面的代码用下面的代码替换:<br><a href="https://pan.baidu.com/s/1W_mDJXS3gDs_iq1aQEZaaA">点击下载</a>    </p>
+<h3 id="打开…-themes-next-languages-zh-Hans-yml文件"><a href="#打开…-themes-next-languages-zh-Hans-yml文件" class="headerlink" title="打开…/themes/next/languages/zh-Hans.yml文件"></a>打开…/themes/next/languages/zh-Hans.yml文件</h3><p>搜索<code>post</code>字段,添加一行<code>comments: 评论数</code>,注意其余的不要改   </p>
+<h3 id="设置某篇文章置顶"><a href="#设置某篇文章置顶" class="headerlink" title="设置某篇文章置顶"></a>设置某篇文章置顶</h3><p>前面的流程走完后,只需要在写文章的时候在文章前面加入top: true<br>或者top: 100(100只是个例子，数字越大越靠前),就能实现置顶效果了    </p>
+<hr>
+<h1 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h1><h2 id="本地预览和同时发布到远程的浏览结果不一致"><a href="#本地预览和同时发布到远程的浏览结果不一致" class="headerlink" title="本地预览和同时发布到远程的浏览结果不一致"></a>本地预览和同时发布到远程的浏览结果不一致</h2><p>这是由缓存造成的,需要先<code>hexo clean</code>,再<code>hexo g -d</code>部署到远程    </p>
+<hr>
+<h1 id="markdown高级语法"><a href="#markdown高级语法" class="headerlink" title="markdown高级语法"></a>markdown高级语法</h1><h2 id="插入连续多行的代码块"><a href="#插入连续多行的代码块" class="headerlink" title="插入连续多行的代码块"></a>插入连续多行的代码块</h2><p>按一个tab键,然后贴代码，保证每一行代码前都要额外的tab键,同时最前面空一行。<br>比如,我前面插入的连续行代码的实现效果:<br><img src="https://i.imgur.com/Z0BCMhF.png">      </p>
+<h2 id="设置文字大小和颜色和居中效果"><a href="#设置文字大小和颜色和居中效果" class="headerlink" title="设置文字大小和颜色和居中效果"></a>设置文字大小和颜色和居中效果</h2><p>hello,world!<br><font color="#FF0000"> hello,world! </font><br><font size=5> hello,world! </font><br><font size=5 color="#FF0000">hello,world! </font>    </p>
+<center>hello,world!</center>   
+上面的效果需要在markdwon中的代码是这样的:   
+
+<pre><code>hello,world!    
+&lt;font color=&quot;#FF0000&quot;&gt; hello,world! &lt;/font&gt;    
+&lt;font size=5&gt; hello,world! &lt;/font&gt;     
+&lt;font size=5 color=&quot;#FF0000&quot;&gt;hello,world! &lt;/font&gt;    
+&lt;center&gt;hello,world!&lt;/center&gt;    </code></pre>
+<h2 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h2><p>效果图:   </p>
+<table>
+<thead>
+<tr>
+<th align="left">左对齐标题</th>
+<th align="right">右对齐标题</th>
+<th align="center">居中对齐标题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">短文本</td>
+<td align="right">中等文本</td>
+<td align="center">稍微长一点的文本</td>
+</tr>
+<tr>
+<td align="left">稍微长一点的文本</td>
+<td align="right">短文本</td>
+<td align="center">中等文本</td>
+</tr>
+</tbody></table>
+<p>markdown代码如下：    </p>
+<pre><code>| 左对齐标题 | 右对齐标题 | 居中对齐标题 |
+| :------| ------: | :------: |
+| 短文本 | 中等文本 | 稍微长一点的文本 |
+| 稍微长一点的文本 | 短文本 | 中等文本 |</code></pre>
+<hr>
+<h1 id="感谢赞助"><a href="#感谢赞助" class="headerlink" title="感谢赞助"></a>感谢赞助</h1><p>所有赞赏过本站的人: <a href="https://inspurer.github.io/thank/">点击查看</a>   </p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo个人博客基础配置</title>
+    <url>/2020/10/27/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><img src="/images/facade.jpg"> <a id="more"></a></p>
+<h1 id="创建初始项目"><a href="#创建初始项目" class="headerlink" title="创建初始项目"></a>创建初始项目</h1><h2 id="创建hexo"><a href="#创建hexo" class="headerlink" title="创建hexo"></a>创建hexo</h2><p>根据官网 <a href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a> 安装hexo</p>
+<p>创建初始项目</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用next主题"><a href="#使用next主题" class="headerlink" title="使用next主题"></a>使用next主题</h2><p>next官网 <a href="http://theme-next.iissnan.com/getting-started.html">http://theme-next.iissnan.com/getting-started.html</a><br><a href="https://github.com/inspurer/hexo">月小水长的githuab</a>，里面有很多hexo的使用方法, 如搜索、面版娘、点击爱心等</p>
+<p>注意事项：</p>
+<ol>
+<li>hexo在5.0之后把swig给删除了需要自己手动安装</li>
+<li>next主题在使用menu菜单时，需要将 ‘about: /about/ || user’ 中’||’前面的空格去掉，否则在点击导航菜单时会出现这种问题 ‘<a href="http://localhost:4000/about/%20&#39;">http://localhost:4000/about/%20&#39;</a></li>
+</ol>
+<h1 id="进阶配置"><a href="#进阶配置" class="headerlink" title="进阶配置"></a>进阶配置</h1><h2 id="使用本地图片"><a href="#使用本地图片" class="headerlink" title="使用本地图片"></a>使用本地图片</h2><ol>
+<li>调整配置文件_config.yml里的post_asset_folder为true</li>
+<li>在source下创建images文件夹，将图片xx.jpg/png复制到文件夹下</li>
+<li>在xxxx.md中引入文件<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">想输入的提示名字，可不输入</span>](<span class="link">/images/xx.jpg</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="如何折叠（显示-隐藏）部分内容"><a href="#如何折叠（显示-隐藏）部分内容" class="headerlink" title="如何折叠（显示/隐藏）部分内容"></a>如何折叠（显示/隐藏）部分内容</h2><ol>
+<li>安装<a href="https://github.com/fletchto99/hexo-sliding-spoiler">hexo-sliding-spoiler</a></li>
+<li>自定义显示/隐藏文字<br>打开文件 hexo\node_modules\hexo-sliding-spoiler\assetsspoiler.css，找到25-31行，修改其中的 content<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.spoiler</span><span class="selector-class">.collapsed</span> <span class="selector-class">.spoiler-title</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">&quot;Show: &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.spoiler</span><span class="selector-class">.expanded</span> <span class="selector-class">.spoiler-title</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">&quot;Hide: &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;% spoiler &quot;隐藏内容的标题&quot; %&#125;</span><br><span class="line">|文字|文字|</span><br><span class="line">|-|-|</span><br><span class="line">|文字|文字|</span><br><span class="line">&#123;% endspoiler %&#125;</span><br></pre></td></tr></table></figure></li>
+<li>原作者<a href="https://www.baidu.com/link?url=DqdoMiVgNqu15TmcORF2gBoRTNAjJkByw73jC8gZZ11g0e1xqmZt09k6QlsYLeE7E31KfB-4yrzdAGvi-jv5TFO_PGRv1y79ChwH6rkF1rW&wd=&eqid=a374ad7600025f1e000000065f97e0d2">博客地址</a></li>
+</ol>
+<h2 id="添加search本地搜索功能"><a href="#添加search本地搜索功能" class="headerlink" title="添加search本地搜索功能"></a>添加search本地搜索功能</h2><ol>
+<li>安装 npm install hexo-generator-searchdb –save</li>
+<li>在_config.yml中配置<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        隐藏内容的标题
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">       limit: 10000</span><br></pre></td></tr></table></figure>
+    </div>
+</div></li>
+<li>在主题配置文件/themes/next/_config.yml中，找到 Local search，将 enable 设置为 true，启动本地搜索功能。</li>
+</ol>
+<h2 id="添加二次元动图面版娘"><a href="#添加二次元动图面版娘" class="headerlink" title="添加二次元动图面版娘"></a>添加二次元动图面版娘</h2><ol>
+<li>npm install –save hexo-helper-live2d</li>
+<li>在站点的配置文件下加入配置<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        _config.yml面版娘配置
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 二次元图片</span><br><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  model:</span><br><span class="line">    scale: 1</span><br><span class="line">    hHeadPos: 0.5</span><br><span class="line">    vHeadPos: 0.618</span><br><span class="line">  display:</span><br><span class="line">    superSample: 2</span><br><span class="line">    width: 150</span><br><span class="line">    height: 300</span><br><span class="line">    position: right</span><br><span class="line">    hOffset: 0</span><br><span class="line">    vOffset: -20</span><br><span class="line">  mobile:</span><br><span class="line">    show: false</span><br><span class="line">  react:</span><br><span class="line">    opacityDefault: 0.5</span><br><span class="line">    opacityOnHover: 0.2</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+
+</li>
+</ol>
+<h2 id="添加页面点击出现爱心效果"><a href="#添加页面点击出现爱心效果" class="headerlink" title="添加页面点击出现爱心效果"></a>添加页面点击出现爱心效果</h2><ol>
+<li>在/themes/next/source/js/src下添加文件love.js</li>
+<li>在\themes\next\layout_layout.swig文件末尾添加<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 页面点击小红心 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/src/love.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ol>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小三角</title>
+    <url>/2020/10/27/%E5%B0%8F%E4%B8%89%E8%A7%92/</url>
+    <content><![CDATA[<p><img src="/images/facade.jpg"> <a id="more"></a></p>
+<h2 id="向左"><a href="#向左" class="headerlink" title="向左"></a>向左</h2><p>向左，上下边框透明，右边框有颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">inline-block</span>;</span><br><span class="line"><span class="selector-tag">border-top</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-bottom</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-right</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000</span>;</span><br></pre></td></tr></table></figure>
+<p><span class="to-left"></span></p>
+<h2 id="向右"><a href="#向右" class="headerlink" title="向右"></a>向右</h2><p>向右，上下边框透明，左边框有颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">inline-block</span>;</span><br><span class="line"><span class="selector-tag">border-top</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-bottom</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-left</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000</span>;</span><br></pre></td></tr></table></figure>
+<p><span class="to-right"></span></p>
+<h2 id="向上"><a href="#向上" class="headerlink" title="向上"></a>向上</h2><p>向上，左右边框透明，下边框有颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">inline-block</span>;</span><br><span class="line"><span class="selector-tag">border-left</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-right</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-bottom</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000</span>;</span><br></pre></td></tr></table></figure>
+<p><span class="to-top"></span></p>
+<h2 id="向下"><a href="#向下" class="headerlink" title="向下"></a>向下</h2><p>向下，左右边框透明，上边框有颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">inline-block</span>;</span><br><span class="line"><span class="selector-tag">border-left</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-right</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-top</span>: 6<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000</span>;</span><br></pre></td></tr></table></figure>
+<p><span class="to-bottom"></span></p>
+<style>
+.group {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+}
+.group * {
+    margin: 0;
+    padding: 0;
+}
+
+.to-left {
+    margin-left: 50px;
+    display: inline-block;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid #000;
+}
+.to-right {
+    margin-left: 50px;
+    display: inline-block;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #000;
+}
+.to-top {
+    margin-left: 50px;
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #000;
+}
+.to-bottom {
+    margin-left: 50px;
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #000;
+}
+
+</style>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>前端</category>
+        <category>css相关</category>
+        <category>css图标</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>负margin的使用</title>
+    <url>/2020/10/27/%E8%B4%9Fmargin%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="/images/facade.jpg"> <a id="more"></a></p>
+<h2 id="负margin不占位"><a href="#负margin不占位" class="headerlink" title="负margin不占位"></a>负margin不占位</h2><div class="group group-1">
+    <div class="left">
+        <div class="box">margin-right: -15px;</div>
+    </div>
+    <div class="right"></div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        CSS代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.group-1</span> &#123;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-1</span> <span class="selector-class">.left</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">padding-top</span>: <span class="number">1px</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#f99</span>;</span><br><span class="line">	<span class="attribute">vertical-align</span>: bottom;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-1</span> <span class="selector-class">.left</span> <span class="selector-class">.box</span> &#123;</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">5px</span> -<span class="number">10px</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">25px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#3f3</span>;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-1</span> <span class="selector-class">.right</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">35px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#9ff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+<h2 id="负margin实现栅格系统"><a href="#负margin实现栅格系统" class="headerlink" title="负margin实现栅格系统"></a>负margin实现栅格系统</h2><div class="group group-2">
+    <div>
+        <div class="row">
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        CSS代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.group-2</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> dashed <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.row</span> &#123;</span><br><span class="line">	<span class="attribute">margin-left</span>: -<span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">margin-right</span>: -<span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.row</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	<span class="attribute">display</span>: block;</span><br><span class="line">	<span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.col</span> &#123;</span><br><span class="line">	<span class="attribute">float</span>: left;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">25%</span>;</span><br><span class="line">	<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-2</span> <span class="selector-class">.col</span> &gt; <span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">36px</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#d3dce6</span>;</span><br><span class="line">	<span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+<h2 id="前后左右负margin谁显示上边"><a href="#前后左右负margin谁显示上边" class="headerlink" title="前后左右负margin谁显示上边"></a>前后左右负margin谁显示上边</h2><ol>
+<li>左右 左 margin-right:-15px;<div class="group group-3 t1">
+ <div class="left"></div>
+ <div class="right"></div>
+</div>
+结论：左侧盒子负margin-right后，右侧盒子向左边移动，并覆盖在左侧盒子上。</li>
+<li>左右 右 margin-left:-15px;<div class="group group-3 t2">
+ <div class="left"></div>
+ <div class="right"></div>
+</div>
+结论：右侧盒子负margin-left后，右侧盒子向左边移动，并覆盖在左侧盒子上。</li>
+<li>上下 上 margin-bottom: -15px;<div class="group group-3 t3">
+ <div class="top"></div>
+ <div class="bottom"></div>
+</div>
+结论：上方盒子负margin-bottom后，下方盒子向上移动，并覆盖在上方盒子上。</li>
+<li>上下 下 margin-top: -15px;<div class="group group-3 t4">
+ <div class="top"></div>
+ <div class="bottom"></div>
+</div>
+结论：下方盒子负margin-right后，下方盒子向上移动，并覆盖在上方盒子上。</li>
+<li>左右 右 margin-right: -15px; <div class="group group-3 t5">
+ <div class="left"></div>
+ <div class="right"></div>
+</div>
+看起来没变化，但后面在有盒子的时候就会重叠到右盒子上，上下时同理，负margin的那一部分将不占位</li>
+<li>盒子里面有内容时，下面的盒子覆盖上面的盒子，但是上面盒子的内容会覆盖下面的盒子<div class="group group-3 t6">
+ <div class="top">
+     <span></span>
+ </div>
+ <div class="bottom"></div>
+</div>
+
+</li>
+</ol>
+<h2 id="选项卡去边框"><a href="#选项卡去边框" class="headerlink" title="选项卡去边框"></a>选项卡去边框</h2><div class="group group-4">
+    <div class="g-tabs">
+        <span class="active">新闻</span>
+        <span>财经</span>
+        <span>科技</span>
+    </div>
+    <div class="g-content">随着国内疫情得到有效控制,三季度,全国多地的交通拥堵状况,也开始上升,据高德数据显示,三季度，全国有7.48%的城市,通勤高峰处于拥堵状态,有58.17%的城市</div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        html与css代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;group group-4&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;g-tabs&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span>&gt;</span>财经<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">span</span>&gt;</span>科技<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;g-content&quot;</span>&gt;</span>随着国内疫情得到有效控制,三季度,全国多地的交通拥堵状况,也开始上升,据高德数据显示,三季度，全国有7.48%的城市,通勤高峰处于拥堵状态,有58.17%的城市<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.group-4</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span> &#123;</span><br><span class="line">	<span class="attribute">margin-bottom</span>: -<span class="number">1px</span>;</span><br><span class="line">	<span class="attribute">border-left</span>: <span class="number">1px</span> solid red; <span class="comment">/*关键*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">	<span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	<span class="attribute">display</span>: block;</span><br><span class="line">	<span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">	<span class="attribute">float</span>: left;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">	<span class="attribute">border-top</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	<span class="attribute">border-right</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">	<span class="attribute">line-height</span>: <span class="number">36px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-tabs</span> <span class="selector-tag">span</span><span class="selector-class">.active</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.group-4</span> <span class="selector-class">.g-content</span> &#123;</span><br><span class="line">	<span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">	<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+
+
+<style>
+.group {
+    position: relative;
+    padding: 10px;
+    width: 500px;
+    max-width: 100%;
+    height: 100px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+/*1*/
+.group-1 {
+    font-size: 0;
+}
+.group-1 .left {
+    display: inline-block;
+    padding-top: 1px;
+    width: 200px;
+    height: 50px;
+    background: #f99;
+    vertical-align: bottom;
+}
+.group-1 .left .box {
+    margin: 5px -10px 0 0;
+    height: 25px;
+    background: #3f3;
+    font-size: 12px;
+}
+.group-1 .right {
+    display: inline-block;
+    width: 100px;
+    height: 35px;
+    background: #9ff;
+}
+
+/*two*/
+.group-2 > div {
+    height: 60px;
+    border: 1px dashed #ccc;
+}
+.group-2 .row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.group-2 .row:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.group-2 .col {
+    float: left;
+    padding: 0 10px;
+    width: 25%;
+    box-sizing: border-box;
+}
+.group-2 .col > div {
+    height: 36px;
+    background: #d3dce6;
+    border-radius: 3px;
+}
+
+/*three*/
+.group-3 {
+    font-size: 0;
+}
+.group-3 .left, .group-3 .right {
+    display: inline-block;
+}
+.group-3 .left {
+    width: 150px;
+    height: 50px;
+    background: #9f9;
+}
+.group-3 .right {
+    width: 150px;
+    height: 60px;
+    background: rgba(100, 100, 255, 0.5);
+}
+.group-3 .top {
+    width: 150px;
+    height: 40px;
+    background: #9f9;
+}
+.group-3 .bottom {
+    width: 200px;
+    height: 40px;
+    background: rgba(100, 100, 255, 0.5);
+}
+.group-3.t1 .left {
+    margin-right: -15px;
+}
+.group-3.t2 .right {
+    margin-left: -15px;
+}
+.group-3.t3 .top {
+    margin-bottom: -15px;
+}
+.group-3.t4 .bottom {
+    margin-top: -15px;
+}
+.group-3.t5 .right {
+    margin-right: -15px;
+}
+.group-3.t6 .top {
+    border: 4px solid #f99;
+    margin-bottom: -15px;
+}
+.group-3.t6 .top span {
+    display: inline-block;
+    width: 50px;
+    height: 100%;
+    background: red;
+}
+.group-3.t6 .bottom {
+    border: 2px solid blue;
+}
+
+/*4*/
+.group-4 {
+    height: 200px;
+}
+.group-4 .g-tabs {
+    margin-bottom: -1px;
+    border-left: 1px solid red;
+}
+.group-4 .g-tabs:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.group-4 .g-tabs span {
+    float: left;
+    width: 80px;
+    border-top: 1px solid red;
+    border-right: 1px solid red;
+    text-align: center;
+    line-height: 36px;
+}
+.group-4 .g-tabs span.active {
+    background: #fff;
+}
+.group-4 .g-content {
+    padding: 10px;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+</style>
+
+
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>前端</category>
+        <category>css相关</category>
+        <category>尺寸问题</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/10/27/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+</search>
