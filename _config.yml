@@ -101,6 +101,35 @@ ignore:
 #theme: landscape
 theme: next
 
+# 本地搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# 二次元图片
+live2d:
+  enable: true
+  scriptFrom: local
+  model:
+    scale: 1
+    hHeadPos: 0.5
+    vHeadPos: 0.618
+  display:
+    superSample: 2
+    width: 150
+    height: 300
+    position: right
+    hOffset: 0
+    vOffset: -20
+  mobile:
+    show: false
+  react:
+    opacityDefault: 0.5
+    opacityOnHover: 0.2
+
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
